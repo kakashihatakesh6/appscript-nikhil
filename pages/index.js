@@ -1,8 +1,11 @@
+import { axios } from "axios";
 import Filters from "../components/filters";
 import Footer from "../components/footer";
-import styles from "./index.module.css";
+import styles from "../styles/index.module.css";
 
-const WebPLPWithFilterExpanded = () => {
+const Index = ({ sData }) => {
+
+  console.log(sData)
   return (
 
     <>
@@ -45,7 +48,7 @@ const WebPLPWithFilterExpanded = () => {
 
         <div className={styles.contentParent}>
           <section className={styles.contentContainer}>
-            <Filters />
+            <Filters sData={sData}/>
             {/* <DepthFirstSearch /> */}
           </section>
         </div>
@@ -58,4 +61,33 @@ const WebPLPWithFilterExpanded = () => {
   );
 };
 
-export default WebPLPWithFilterExpanded;
+export default Index;
+
+
+export async function getServerSideProps(context) {
+  try {
+    let res = await fetch('https://fakestoreapi.com/products');
+    let data = await res.json();
+
+    return {
+      props: {
+        sData: JSON.parse(JSON.stringify(data))
+      },
+    }
+
+  } catch (error) {
+    console.log(error)
+
+    return {
+      props: { error: true }
+    };
+
+  }
+
+
+}
+
+
+
+
+

@@ -1,6 +1,5 @@
 import Link from "next/link";
-import styles from "./header.module.css";
-import Navbar from "./Navbar";
+import styles from "../styles/header.module.css";
 
 const Header = () => {
   return (

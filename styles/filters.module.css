@@ -71,7 +71,8 @@
   }
   .filterBarContainer {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    padding: 0 36px;
     padding-right: 0;
   }
   .filterShowHide {

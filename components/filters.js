@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
-import styles from "./filters.module.css";
+import styles from "../styles/filters.module.css";
 import ProductCard from "./ProductCard";
 import axios from 'axios';
 
 
-const Filters = () => {
+const Filters = ({ sData }) => {
   const [showToggle, setShowToggle] = useState(false);
   const [showDropToggle, setShowDropToggle] = useState(false);
   const [products, setProducts] = useState();
 
-
+  console.log("filter =>",sData)
   const fetchData = async () => {
     try {
       const res = await axios.get('https://fakestoreapi.com/products');
@@ -77,7 +77,7 @@ const Filters = () => {
             </div>
 
             <div className={styles.filterMobile}>
-              <b>Filter</b>
+              <b>FILTER</b>
             </div>
 
             <div className={styles.recommendedParent}>
@@ -218,7 +218,7 @@ const Filters = () => {
 
               {/* Filter-12 IDEAL FOR   */}
 
-              {products && (products.slice(0, 2)).map((item, index) => (
+              {sData && (sData.slice(0, 2)).map((item, index) => (
                 <div key={index}>
                   <div className={styles.filterItemContainer}>
                     <div>
@@ -350,7 +350,7 @@ const Filters = () => {
 
           <div className={styles.productList}>
             <div className={styles.productItems}>
-              {products?.map((item, index) => (
+              {sData?.map((item, index) => (
                 <ProductCard key={index} data={item} />
               ))}
             </div>
@@ -367,3 +367,5 @@ const Filters = () => {
 };
 
 export default Filters;
+
+

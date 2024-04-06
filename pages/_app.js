@@ -1,7 +1,6 @@
 import { Fragment } from "react";
 import Head from "next/head";
-import "./global.css";
-import Footer from "../components/footer";
+import "../styles/global.css";
 import Header from "../components/header";
 
 function MyApp({ Component, pageProps }) {

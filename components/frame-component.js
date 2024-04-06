@@ -1,4 +1,4 @@
-import styles from "./frame-component.module.css";
+import styles from "../styles/frame-component.module.css";
 
 const FrameComponent = () => {
   return (
