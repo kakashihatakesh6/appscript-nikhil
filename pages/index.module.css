@@ -1,3 +1,42 @@
+.homeMain{
+  margin-top: 40px;
+  width: 100vw;
+  height: 100%;
+  overflow-x: hidden;
+}
+.breadscrumbParent{
+  display: none;
+}
+
+@media screen and (max-width: 750px) {
+  .homeMain{
+    margin: 16px 0;
+  }
+  .breadscrumbParent{
+    display: flex;
+    width: 100vw;
+    padding: 0 16px;
+  }
+  .breadscrumbContainer{
+    display: flex;
+    justify-content: start;
+  }
+  .breadscrumb{
+    font-size: 12px;
+    line-height: 14.4px;
+    font-weight: 400;
+    color: #BFC8CD;
+    font-family: var(--font-simplon-norm);
+  }
+  .lineVerticle{
+    margin: 0 8px;
+  }
+  .breadscrumbShop{
+    color: #252020;
+  }
+
+}
+
 .homeTitleBox{
   align-self: stretch;
   display: flex;
@@ -7,7 +46,15 @@
   padding: 0 var(--padding-xl) var(--padding-53xl) 21px;
   box-sizing: border-box;
   max-width: 100%;
+  /* background: pink; */
   /* margin-top: 40px; */
+}
+
+@media screen and (max-width: 750px) {
+  .homeTitleBox{
+    padding: 0 16px;
+  }
+  
 }
 .homeTitleMain{
   width: 721px;
@@ -85,6 +132,7 @@
   font-family: var(--font-simplon-norm);
 }
 
+
 @media screen and (max-width: 750px) {
   .homeTitle{
     display: flex;
@@ -102,6 +150,29 @@
     font-weight: 400;
   }
 }
+
+.contentParent{
+  display: flex;
+  width: 100vw;
+  padding: 0 96px;
+}
+.contentContainer{
+  display: flex;
+}
+
+@media screen and (max-width: 750px) {
+  .contentParent{
+    display: flex;
+    width: 100vw;
+    padding: 0;
+  }
+  .contentContainer{
+    display: flex;
+  }
+  
+}
+
+
 
 
 

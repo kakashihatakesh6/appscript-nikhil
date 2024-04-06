@@ -1,17 +1,17 @@
 import React from 'react'
 import styles from '../styles/ProductCard.module.css'
 
-const ProductCard = () => {
+const ProductCard = ({data}) => {
     return (
         <div className={styles.productCardContainer}>
             
             <div className={styles.productCardImage}>
-                <img className={styles.productImage} alt="" src="/hover-pic@2x.png" />
+                {/* <img className={styles.productImage} alt="" src="/hover-pic@2x.png" /> */}
                 <img
                     className={styles.productImage}
                     loading="lazy"
                     alt=""
-                    src="/front-pic@2x.png"
+                    src={data?.image || "/front-pic@2x.png"}
                 />
             </div>
 
@@ -19,11 +19,11 @@ const ProductCard = () => {
 
                 <div className={styles.productTitle}>
                     <b>
-                        PPXOC Milkyway dress in pressed flowers
+                        {data?.title || 'PPXOC Milkyway dress in pressed flowers'}
                     </b>
                 </div>
 
-                <div>
+                <div className={styles.productInfoContainer}>
                     <div className={styles.productInfo}>
                         <div className={styles.productSignIn}>
                             <span className={styles.signIn}>Sign in</span> or Create an
@@ -34,7 +34,7 @@ const ProductCard = () => {
                         <img
                             loading="lazy"
                             alt="fav-icon"
-                            src="/vuesaxlinearheart-2.svg"
+                            src={"/vuesaxlinearheart-2.svg"}
                         />
                     </div>
                 </div>

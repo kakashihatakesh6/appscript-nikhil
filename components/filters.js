@@ -1,13 +1,32 @@
-import { useCallback, useState } from "react";
-import FrameComponent1 from "./frame-component1";
-import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 import styles from "./filters.module.css";
 import ProductCard from "./ProductCard";
+import axios from 'axios';
 
 
 const Filters = () => {
   const [showToggle, setShowToggle] = useState(false);
   const [showDropToggle, setShowDropToggle] = useState(false);
+  const [products, setProducts] = useState();
+
+
+  const fetchData = async () => {
+    try {
+      const res = await axios.get('https://fakestoreapi.com/products');
+      const data = res.data;
+      setProducts(data);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, [])
+
+
+
+
 
   const handleShowHideToggle = () => {
     setShowToggle(!showToggle);
@@ -15,6 +34,8 @@ const Filters = () => {
   const handleShowDropToggle = () => {
     setShowDropToggle(!showDropToggle);
   }
+
+
 
 
   return (
@@ -73,7 +94,7 @@ const Filters = () => {
                 </div>
 
 
-                {!showDropToggle &&
+                {showDropToggle &&
 
                   <div className={styles.recommendedDropMenu}>
                     <div className={styles.optionDropMenu}>
@@ -106,49 +127,145 @@ const Filters = () => {
 
         <div className={styles.filterContentParent}>
 
-          <div className={styles.filterColumn}>
+          {!showToggle &&
 
-            {/* <div className={styles.checkboxContainer}>
-              <input className={styles.checkbox} type="checkbox" />
-              <b className={styles.customizble}>Customizble</b>
-            </div>
+            <div className={styles.filterColumn}>
 
-            <div className={styles.seperator} /> */}
+              <div className={styles.checkboxContainerr}>
+                <input type="checkbox" />
+                <b>Customizble</b>
+              </div>
+
+              <div className={styles.seperator} />
 
 
 
-            {/* Filter-1 IDEAL FOR   */}
-            {/* <div className={styles.idealForContainer}>
-              <div className={styles.name}>
-                <b className={styles.idealFor}>IDEAL FOR</b>
-                <div className={styles.vuesaxlineararrowLeftWrapper}>
-                  <img
-                    className={styles.vuesaxlineararrowLeftIcon}
-                    alt=""
-                    src="/vuesaxlineararrowleft-5@2x.png"
-                  />
+              {/* Filter-1 IDEAL FOR   */}
+
+              <div className={styles.filterItemContainer}>
+                <div className={styles.filterTitleContainer}>
+                  <b>IDEAL FOR</b>
+                  <div className={styles.filterItemImage}>
+                    <img
+                      alt="arrow-down"
+                      src="/vuesaxlineararrowleft-5@2x.png"
+                    />
+                  </div>
+                </div>
+
+                <div className={styles.filterSubtitle}>All</div>
+                <div className={styles.unselectAlll}>Unselect all</div>
+
+                <div className={styles.filterItemOptions}>
+                  <div className={styles.checkboxOptionContainer}>
+                    <input className={styles.checkboxOption} type="checkbox" />
+                    <div className={styles.checkboxOptionTitle}>Men</div>
+                  </div>
+                  <div className={styles.checkboxOptionContainer}>
+                    <input className={styles.checkboxOption} type="checkbox" />
+                    <div className={styles.checkboxOptionTitle}>Woman</div>
+                  </div>
+                  <div className={styles.checkboxOptionContainer}>
+                    <input className={styles.checkboxOption} type="checkbox" />
+                    <div className={styles.checkboxOptionTitle}>Men</div>
+                  </div>
+
                 </div>
               </div>
-              <div className={styles.all}>All</div>
-              <div className={styles.unselectAll}>Unselect all</div>
-              <input className={styles.checkbox1} type="checkbox" />
-              <div className={styles.men}>Men</div>
-              <input className={styles.checkbox2} type="checkbox" />
-              <div className={styles.women}>Women</div>
-              <input className={styles.checkbox3} type="checkbox" />
-              <div className={styles.babyKids}>{`Baby & Kids`}</div>
-            </div> */}
+
+              <div className={styles.seperator11} />
+
+
+              {/* Filter-11 IDEAL FOR   */}
+
+              <div className={styles.filterItemContainer}>
+                <div>
+                  <div className={styles.filterTitleContainer}>
+                    <b>SUITABLE FOR</b>
+                    <div className={styles.filterItemImage}>
+                      <img
+                        alt="arrow-down"
+                        src="/vuesaxlineararrowleft-5@2x.png"
+                      />
+                    </div>
+                  </div>
+
+                  <div className={styles.filterSubtitle}>All</div>
+                </div>
+
+
+                <div className={styles.unselectAlll}>Unselect all</div>
+
+                <div className={styles.filterItemOptions}>
+                  <div className={styles.checkboxOptionContainer}>
+                    <input className={styles.checkboxOption} type="checkbox" />
+                    <div className={styles.checkboxOptionTitle}>Men</div>
+                  </div>
+                  <div className={styles.checkboxOptionContainer}>
+                    <input className={styles.checkboxOption} type="checkbox" />
+                    <div className={styles.checkboxOptionTitle}>Woman</div>
+                  </div>
+                  <div className={styles.checkboxOptionContainer}>
+                    <input className={styles.checkboxOption} type="checkbox" />
+                    <div className={styles.checkboxOptionTitle}>Men</div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div className={styles.seperator11} />
+
+
+              {/* Filter-12 IDEAL FOR   */}
+
+              {products && (products.slice(0, 2)).map((item, index) => (
+                <div key={index}>
+                  <div className={styles.filterItemContainer}>
+                    <div>
+                      <div className={styles.filterTitleContainer}>
+                        <b>{item?.category}</b>
+                        <div className={styles.filterItemImage}>
+                          <img
+                            alt="arrow-down"
+                            src="/vuesaxlineararrowleft-5@2x.png"
+                          />
+                        </div>
+                      </div>
+
+                      <div className={styles.filterSubtitle}>All</div>
+                    </div>
+
+
+                    <div className={styles.unselectAlll}>Unselect all</div>
+
+                    <div className={styles.filterItemOptions}>
+                      <div className={styles.checkboxOptionContainer}>
+                        <input className={styles.checkboxOption} type="checkbox" />
+                        <div className={styles.checkboxOptionTitle}>Men</div>
+                      </div>
+                      <div className={styles.checkboxOptionContainer}>
+                        <input className={styles.checkboxOption} type="checkbox" />
+                        <div className={styles.checkboxOptionTitle}>Woman</div>
+                      </div>
+                      <div className={styles.checkboxOptionContainer}>
+                        <input className={styles.checkboxOption} type="checkbox" />
+                        <div className={styles.checkboxOptionTitle}>Men</div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div className={styles.seperator11} />
+                </div>
+
+              ))}
 
 
 
-            {/* <div className={styles.seperator1} /> */}
+              {/* Filter-2 OCcasion   */}
 
 
-
-            {/* Filter-2 OCcasion   */}
-
-
-            {/* <div className={styles.filter2}>
+              {/* <div className={styles.filter2}>
 
               <div className={styles.title}>
                 <div className={styles.name1}>
@@ -192,10 +309,10 @@ const Filters = () => {
             <div className={styles.seperator2} /> */}
 
 
-            {/* Filter-3 OCcasion   */}
+              {/* Filter-3 OCcasion   */}
 
 
-            {/* <div className={styles.filter3}>
+              {/* <div className={styles.filter3}>
               <div className={styles.title1}>
                 <div className={styles.name2}>
                   <b className={styles.work}>work</b>
@@ -228,44 +345,17 @@ const Filters = () => {
               </div>
             </div> */}
 
-          </div>
+            </div>
+          }
 
           <div className={styles.productList}>
             <div className={styles.productItems}>
-              <ProductCard />
+              {products?.map((item, index) => (
+                <ProductCard key={index} data={item} />
+              ))}
             </div>
           </div>
 
-
-
-
-          {/* <div className={styles.productCard}>
-          <div className={styles.image}>
-            <img className={styles.hoverPicIcon} alt="" src="/hover-pic@2x.png" />
-            <img
-              className={styles.frontPicIcon}
-              loading="lazy"
-              alt=""
-              src="/front-pic@2x.png"
-            />
-          </div>
-          <FrameComponent1 />
-        </div>
-
-
-
-        <div className={styles.productCard1}>
-          <div className={styles.image1}>
-            <div className={styles.hoverPic} />
-            <img
-              className={styles.frontPicIcon1}
-              loading="lazy"
-              alt=""
-              src="/front-pic-1@2x.png"
-            />
-          </div>
-          <FrameComponent1 />
-        </div> */}
 
 
         </div>

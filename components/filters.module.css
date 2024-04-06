@@ -1,11 +1,10 @@
 .filterMain {
   display: flex;
   flex-direction: column;
-  width: 100vw;
   align-items: center;
-  justify-content: center;
-  padding: 0px 96px;
-  background: rgb(210, 178, 119);
+  width: 100vw;
+  height: auto;
+  padding: 0px;
 }
 
 /* Filter Bar  */
@@ -13,20 +12,24 @@
 .filterBar {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  width: 1000px;
-  background: rgb(163, 163, 233);
+  justify-content: space-between;
+  width: 100%;
+  height: 88px;
+  padding: 0;
+  z-index: 80;
+  /* background: pink; */
+  /* margin-left: 0px auto; */
 }
 
 .filterBarContainer {
   display: flex;
-  position: relative;
+  /* position: relative; */
+  width: 100%;
+  padding-right: 240px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin: 5px auto;
-  width: 100%;
-  height: 88px;
   border-top: 1px solid #e5e5e5;
   border-bottom: 1px solid #e5e5e5;
   font-size: 16px;
@@ -61,10 +64,15 @@
 }
 
 @media screen and (max-width: 750px) {
+  .filterBar{
+    width: 100vw;
+    justify-content: center;
+    /* background: pink; */
+  }
   .filterBarContainer {
     display: flex;
     justify-content: space-evenly;
-    width: 100vh;
+    padding-right: 0;
   }
   .filterShowHide {
     display: none;
@@ -111,7 +119,7 @@
   margin-right: 36px;
 }
 .recommendedDrop b {
-  margin-right: 10px;
+  margin-right: 5px;
   font-size: 18px;
   line-height: 40px;
   font-weight: 700;
@@ -123,7 +131,7 @@
   display: flex;
   width: 16px;
   height: 16px;
-  margin-left: 18px;
+  margin-left: 3px;
 }
 
 .showDropActive {
@@ -142,7 +150,9 @@
   width: 235px;
   height: 324px;
   padding: 24px 40px;
-  background: rgb(241, 239, 239);
+  background: rgb(246, 246, 246);
+  z-index: 10px;
+  opacity: 1;
 }
 .optionDropMenu {
   display: flex;
@@ -154,7 +164,6 @@
   text-align: right;
   margin-bottom: 18px;
   text-transform: uppercase;
-  z-index: 10;
 }
 
 /*============= End of filter Bar============ */
@@ -166,16 +175,186 @@
   flex-direction: row;
   position: relative;
   height: 614px;
-  max-width: 100%;
+  width: 100%;
+  margin-top: 50px;
   text-align: left;
   font-size: var(--font-size-lg);
   color: var(--text-text);
   font-family: var(--font-simplon-norm);
+
+}
+
+.filterColumn {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+@media screen and (max-width: 750px) {
+  .filterColumn {
+    display: none;
+  }
+}
+
+.checkboxContainerr {
+  display: flex;
+}
+.checkboxContainerr input {
+  margin: 0;
+  position: relative;
+  border: 0.9px solid var(--text-secondary-text1);
+  box-sizing: border-box;
+  width: 22px;
+  height: 22px;
+  margin-right: 10px;
+}
+.checkboxContainerr b {
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 700;
+  font-family: var(--font-simplon-norm);
+}
+
+.seperator {
+  position: relative;
+  margin: 24px 0px;
+  border-top: 1px solid var(--color-gainsboro-200);
+  box-sizing: border-box;
+  width: 301px;
+  height: 1px;
+}
+.seperator11 {
+  position: relative;
+  margin-bottom: 24px;
+  border-top: 1px solid var(--color-gainsboro-200);
+  box-sizing: border-box;
+  width: 301px;
+  height: 1px;
 }
 
 .productList {
   display: flex;
 }
+.productItems{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media screen and (max-width: 750px) {
+  .productList {
+    display: flex;
+  }
+  .productItems{
+    display: flex;
+    width: 100vw;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2px;
+  }
+  
+}
+
+.filterItemContainer {
+  display: flex;
+  flex-direction: column;
+}
+.filterTitleContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.filterTitleContainer b {
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 700;
+  font-family: var(--font-simplon-norm);
+}
+.filterItemImage img {
+  height: 16px;
+  width: 16px;
+  position: relative;
+  object-fit: contain;
+}
+
+.filterSubtitle {
+  margin-top: 8px;
+}
+
+.unselectAlll {
+  margin: 24px 0;
+  font-size: var(--font-size-base);
+  text-decoration: underline;
+  color: var(--text-tertiary-text);
+}
+
+.checkboxOptionContainer{
+  display: flex;
+  flex-direction: row;
+}
+.checkboxOptionContainer input{
+  border: 0.7px solid var(--text-secondary-text1);
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  margin-bottom: 24px;
+}
+.checkboxOptionContainer .checkboxOptionTitle{
+  font-family: var(--font-simplon-norm);
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 400;
+  color: var(--text-text);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media screen and (max-width: 750px) {
   .frameGroup {
@@ -208,6 +387,11 @@
   }
 }
 
+
+
+
+
+
 .checkbox {
   margin: 0;
   position: absolute;
@@ -227,15 +411,7 @@
   width: 270px;
   height: 16px;
 }
-.seperator {
-  position: absolute;
-  top: 166px;
-  left: 0;
-  border-top: 1px solid var(--color-gainsboro-200);
-  box-sizing: border-box;
-  width: 301px;
-  height: 1px;
-}
+
 .idealFor {
   position: relative;
   text-transform: uppercase;
@@ -274,15 +450,10 @@
 }
 .all,
 .unselectAll {
-  top: 220px;
+  /* top: 220px; */
   display: inline-block;
 }
-.unselectAll {
-  top: 266px;
-  font-size: var(--font-size-base);
-  text-decoration: underline;
-  color: var(--text-tertiary-text);
-}
+
 .checkbox1 {
   margin: 0;
   top: 310px;

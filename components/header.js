@@ -103,68 +103,7 @@ const Header = () => {
 
             </div>
 
-
-
-
           </div>
-
-
-
-
-
-          {/* <div className={styles.linkConnector}>
-            <div className={styles.imageRecognizer}>
-              <div className={styles.shapeExtractor}>
-
-              <img className={styles.indiaInIcon} alt="" src="/india-in.svg" />
-            <img className={styles.headerChild} alt="" src="/star-1.svg" />
-
-            <div className={styles.icons}>
-              <img
-                className={styles.vuesaxlinearsearchNormalIcon}
-                alt=""
-                src="/vuesaxlinearsearchnormal.svg"
-              />
-              <img
-                className={styles.vuesaxlinearsearchNormalIcon1}
-                alt=""
-                src="/vuesaxlinearsearchnormal.svg"
-              />
-              <div className={styles.language}>
-                <img className={styles.indiaInIcon1} alt="" src="/india-in.svg" />
-                <img className={styles.languageChild} alt="" src="/star-1.svg" />
-                <div>
-                  <select className={styles.eng}>
-                    <option value="">HIN</option>
-                    <option value="">Telugu</option>
-                  </select>
-                  <img
-                    className={styles.vuesaxlineararrowLeftIcon}
-                    alt=""
-                    src="/vuesaxlineararrowleft@2x.png"
-                  />
-                </div>
-
-              </div>
-            </div>
-
-
-              </div>
-
-
-
-
-
-
-            </div>
-
-
-
-            
-
-
-
-          </div> */}
 
 
         </header>
@@ -178,7 +117,32 @@ const Header = () => {
                   <b className={styles.linkShop}>SHOP</b>
                 </Link>
               </div>
-              <div className={styles.tab2Parent}>
+              <div className={styles.navLinkDiv}>
+                <Link href={'/'} className={styles.linkContainer}>
+                  <b className={styles.linkShop}>SKILLS</b>
+                </Link>
+              </div>
+              <div className={styles.navLinkDiv}>
+                <Link href={'/'} className={styles.linkContainer}>
+                  <b className={styles.linkShop}>STORIES</b>
+                </Link>
+              </div>
+              <div className={styles.navLinkDiv}>
+                <Link href={'/'} className={styles.linkContainer}>
+                  <b className={styles.linkShop}>ABOUT</b>
+                </Link>
+              </div>
+              <div className={styles.navLinkDiv}>
+                <Link href={'/'} className={styles.linkContainer}>
+                  <b className={styles.linkShop}>CONTACT US</b>
+                </Link>
+              </div>
+
+
+
+
+
+              {/* <div className={styles.tab2Parent}>
                 <div className={styles.tab2}>
                   <b className={styles.skills}>SKILLS</b>
                 </div>
@@ -195,7 +159,7 @@ const Header = () => {
               <div className={styles.tab5}>
                 <b className={styles.contactUs}>CONTACT US</b>
                 <div className={styles.tab5Child} />
-              </div>
+              </div> */}
             </div>
           </nav>
         </div>
