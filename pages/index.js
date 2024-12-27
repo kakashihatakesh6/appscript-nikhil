@@ -1,19 +1,17 @@
-import { axios } from "axios";
 import Filters from "../components/filters";
 import Footer from "../components/footer";
-import styles from "../styles/index.module.css";
+import styles from "../styles/Index.module.css";
+import { useState } from "react";
 
 const Index = ({ sData }) => {
-
-  console.log(sData)
+  const [fakeApiData, setFakeApiData] = useState(sData)
+  // console.log("sData =>", sData)
   return (
 
     <>
       {/* <Header /> */}
 
       <main className={styles.homeMain}>
-
-
 
         {/* Breadscrumb  */}
         <div className={styles.breadscrumbParent}>
@@ -48,7 +46,7 @@ const Index = ({ sData }) => {
 
         <div className={styles.contentParent}>
           <section className={styles.contentContainer}>
-            <Filters sData={sData}/>
+            <Filters sData={fakeApiData} onFilterSelect={setFakeApiData} />
             {/* <DepthFirstSearch /> */}
           </section>
         </div>
@@ -68,7 +66,6 @@ export async function getServerSideProps(context) {
   try {
     let res = await fetch('https://fakestoreapi.com/products');
     let data = await res.json();
-
     return {
       props: {
         sData: JSON.parse(JSON.stringify(data))
