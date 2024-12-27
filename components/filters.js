@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import styles from "../styles/Filters.module.css";
+import styles from "../styles/filters.module.css";
 import ProductCard from "./ProductCard";
 import axios from 'axios';
 

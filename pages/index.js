@@ -1,6 +1,6 @@
 import Filters from "../components/filters";
 import Footer from "../components/footer";
-import styles from "../styles/Index.module.css";
+import styles from "../styles/index.module.css";
 import { useState } from "react";
 
 const Index = ({ sData }) => {
