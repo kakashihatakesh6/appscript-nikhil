@@ -1,114 +1,117 @@
 import { useState, useEffect } from "react";
 import styles from "../styles/filters.module.css";
 import ProductCard from "./product-card";
-import axios from 'axios';
-
+import axios from "axios";
 
 const Filters = ({ sData, onFilterSelect }) => {
   const [showToggle, setShowToggle] = useState(false);
   const [showDropToggle, setShowDropToggle] = useState(false);
   const [products, setProducts] = useState();
   const [categories, setCategories] = useState();
-  const [selectedCategory, setSelectedCategory] = useState('electronics')
-  const [isLoading, setIsLoading] = useState(false)
-  const [show, setShow] = useState(false)
+  const [selectedCategory, setSelectedCategory] = useState("electronics");
+  const [isLoading, setIsLoading] = useState(false);
+  const [show, setShow] = useState(false);
 
   const fetchData = async () => {
-    console.log("im hitting fetch data")
+    console.log("im hitting fetch data");
     try {
-      setIsLoading(true)
-      const res = await axios.get('https://fakestoreapi.com/products');
+      setIsLoading(true);
+      const res = await axios.get("https://fakestoreapi.com/products");
       const data = res.data;
       setProducts(data);
-      setIsLoading(false)
+      setIsLoading(false);
     } catch (error) {
-      setIsLoading(false)
-      console.log(error)
+      setIsLoading(false);
+      console.log(error);
     }
-  }
+  };
 
   const getAllCategories = async () => {
-    console.log("im hitting all categories")
+    console.log("im hitting all categories");
     try {
-      const res = await axios.get("https://fakestoreapi.com/products/categories");
-      setCategories(res.data)
+      const res = await axios.get(
+        "https://fakestoreapi.com/products/categories"
+      );
+      setCategories(res.data);
     } catch (error) {
-      console.log("Some Error occurred while fetching data!", error)
+      console.log("Some Error occurred while fetching data!", error);
     }
-  }
+  };
 
   useEffect(() => {
     fetchData();
-    getAllCategories()
-  }, [])
+    getAllCategories();
+  }, []);
 
   const getSelectedCategory = async () => {
-    console.log("im hitting getselected category")
+    console.log("im hitting getselected category");
     try {
-      setIsLoading(true)
-      console.log("selected category =>", selectedCategory)
-      const res = await axios.get(`https://fakestoreapi.com/products/category/${selectedCategory}`);
-      console.log("res and cat =>", res)
-      setProducts(res.data)
-      setIsLoading(false)
+      setIsLoading(true);
+      console.log("selected category =>", selectedCategory);
+      const res = await axios.get(
+        `https://fakestoreapi.com/products/category/${selectedCategory}`
+      );
+      console.log("res and cat =>", res);
+      setProducts(res.data);
+      setIsLoading(false);
     } catch (error) {
-      setIsLoading(false)
-      console.log("Some Error occurred while fetching data!", error)
+      setIsLoading(false);
+      console.log("Some Error occurred while fetching data!", error);
     }
-  }
+  };
 
   useEffect(() => {
     getSelectedCategory();
-  }, [selectedCategory])
+  }, [selectedCategory]);
 
   const handleShowHideToggle = () => {
     setShowToggle(!showToggle);
-  }
+  };
 
   const handleShowDropToggle = () => {
     setShowDropToggle(!showDropToggle);
-  }
+  };
 
-  console.log("selected cat =>", selectedCategory)
+  console.log("selected cat =>", selectedCategory);
 
-  const filterCategories = ['IDEAL FOR', 'OCCASSION', 'WORK', 'FABRIC', 'SEGMENT', 'SUITABLE FOR', 'RAW MATERIALS', 'PATTERN']
+  const filterCategories = [
+    "IDEAL FOR",
+    "OCCASSION",
+    "WORK",
+    "FABRIC",
+    "SEGMENT",
+    "SUITABLE FOR",
+    "RAW MATERIALS",
+    "PATTERN",
+  ];
 
   return (
     <>
       <main className={styles.filterMain}>
-
-
         {/* Filter Bar */}
         <div className={styles.filterBar}>
-
           <div className={styles.filterBarContainer}>
-
             <div className={styles.filterShowHide}>
-
               <div className={styles.itemsNumber}>
-                <b>{sData.length || '3211'} ITEMS</b>
+                <b>{sData.length || "3211"} ITEMS</b>
               </div>
 
-              <div className={styles.showHideToggle} onClick={handleShowHideToggle}>
+              <div
+                className={styles.showHideToggle}
+                onClick={handleShowHideToggle}
+              >
                 {showToggle ? (
                   <div className={styles.showHide}>
-                    <img
-                      alt="arrow-right"
-                      src="/vuesaxlineararrowleft-8.svg"
-                    />
+                    <img alt="arrow-right" src="/vuesaxlineararrowleft-8.svg" />
                     <div className={styles.showHideTitle}>SHOW FILTER</div>
                   </div>
                 ) : (
                   <div className={styles.showHide}>
-                    <img
-                      alt="arrow-right"
-                      src="/vuesaxlineararrowleft-8.svg"
-                    />
+                    <img alt="arrow-right" src="/vuesaxlineararrowleft-8.svg" />
                     <div className={styles.showHideTitle}>HIDE FILTER</div>
                   </div>
                 )}
               </div>
-
             </div>
 
             <div className={styles.filterMobile}>
@@ -116,21 +119,18 @@ const Filters = ({ sData, onFilterSelect }) => {
             </div>
 
             <div className={styles.recommendedParent}>
-              <div className={styles.recommendedContainer} onClick={handleShowDropToggle}>
-
-                <div className={styles.recommendedDrop} >
+              <div
+                className={styles.recommendedContainer}
+                onClick={handleShowDropToggle}
+              >
+                <div className={styles.recommendedDrop}>
                   <b>recommended</b>
                   <div className={styles.recommendedArrow}>
-                    <img
-                      alt="arrow-down"
-                      src="/vuesaxlineararrowleft@2x.png"
-                    />
+                    <img alt="arrow-down" src="/vuesaxlineararrowleft@2x.png" />
                   </div>
                 </div>
 
-
-                {showDropToggle &&
-
+                {showDropToggle && (
                   <div className={styles.recommendedDropMenu}>
                     <div className={styles.optionDropMenu}>
                       <img
@@ -144,27 +144,24 @@ const Filters = ({ sData, onFilterSelect }) => {
 
                     <div className={styles.optionDropMenu}>Newest first</div>
                     <div className={styles.optionDropMenu}>popular</div>
-                    <div className={styles.optionDropMenu}>Price : high to low12</div>
-                    <div className={styles.optionDropMenu}>Price : low to high</div>
+                    <div className={styles.optionDropMenu}>
+                      Price : high to low12
+                    </div>
+                    <div className={styles.optionDropMenu}>
+                      Price : low to high
+                    </div>
                   </div>
-                }
-
+                )}
               </div>
             </div>
-
           </div>
-
-
         </div>
 
         {/* Filter Options   */}
 
         <div className={styles.filterContentParent}>
-
-          {!showToggle &&
-
+          {!showToggle && (
             <div className={styles.filterColumn}>
-
               <div className={styles.checkboxContainerr}>
                 <input type="checkbox" />
                 <b>Customizble</b>
@@ -172,18 +169,21 @@ const Filters = ({ sData, onFilterSelect }) => {
 
               <div className={styles.seperator} />
 
-
               {/* Filter-1 IDEAL FOR   */}
 
               {filterCategories.map((item, index) => (
                 <div key={index} className={styles.filterItemContainer}>
-
                   <div className={styles.filterTitleContainer}>
                     <b>{item || "IDEAL FOR"}</b>
-                    <div onClick={() => setShow(!show)} className={styles.filterItemImage} >
+                    <div
+                      onClick={() => setShow(!show)}
+                      className={styles.filterItemImage}
+                    >
                       <img
                         alt="arrow-down"
-                        src={!show ? '/icons/arrowdown.svg' : '/icons/arrowup.svg'}
+                        src={
+                          !show ? "/icons/arrowdown.svg" : "/icons/arrowup.svg"
+                        }
                       />
                     </div>
                   </div>
@@ -191,19 +191,27 @@ const Filters = ({ sData, onFilterSelect }) => {
                   <div className={styles.filterSubtitle}>All</div>
                   <div className={styles.unselectAlll}>Unselect all</div>
 
-                  {show &&
+                  {show && (
                     <div className={styles.filterItemOptions}>
-
-                      {categories && categories.map((category, index) => (
-                        <div key={index} className={styles.checkboxOptionContainer}>
-                          <input className={styles.checkboxOption} checked={category === selectedCategory} onChange={() => setSelectedCategory(category)} type="checkbox" />
-                          <div className={styles.checkboxOptionTitle}>{category}</div>
-                        </div>
-                      ))}
-
+                      {categories &&
+                        categories.map((category, index) => (
+                          <div
+                            key={index}
+                            className={styles.checkboxOptionContainer}
+                          >
+                            <input
+                              className={styles.checkboxOption}
+                              checked={category === selectedCategory}
+                              onChange={() => setSelectedCategory(category)}
+                              type="checkbox"
+                            />
+                            <div className={styles.checkboxOptionTitle}>
+                              {category}
+                            </div>
+                          </div>
+                        ))}
                     </div>
-                  }
-
+                  )}
                 </div>
               ))}
 
@@ -247,7 +255,6 @@ const Filters = ({ sData, onFilterSelect }) => {
               </div>
 
               <div className={styles.seperator11} /> */}
-
 
               {/* Filter-12 IDEAL FOR   */}
 
@@ -296,35 +303,61 @@ const Filters = ({ sData, onFilterSelect }) => {
                 </div>
 
               ))} */}
-
             </div>
-
-          }
+          )}
 
           <div className={styles.productList}>
-
-            <div className={styles.productItems}>
-              {products && products.map((item, index) => (
-                <ProductCard key={index} data={item} />
-              ))}
-            </div>
-
-            {isLoading &&
-              <div>
-                  <p>Content is loading...</p>
+            {isLoading ? (
+              <div
+                style={{ display: "flex", position: "absolute", left: "50%" }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 100 100"
+                  width="100"
+                  height="100"
+                >
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="40"
+                    stroke="#3498db"
+                    stroke-width="8"
+                    fill="none"
+                    stroke-dasharray="251.2"
+                    stroke-dashoffset="0"
+                  >
+                    <animateTransform
+                      attributeName="transform"
+                      type="rotate"
+                      from="0 50 50"
+                      to="360 50 50"
+                      dur="1s"
+                      repeatCount="indefinite"
+                    />
+                    <animate
+                      attributeName="stroke-dashoffset"
+                      from="0"
+                      to="251.2"
+                      dur="1s"
+                      repeatCount="indefinite"
+                    />
+                  </circle>
+                </svg>
               </div>
-            }
-
+            ) : (
+              <div className={styles.productItems}>
+                {products &&
+                  products.map((item, index) => (
+                    <ProductCard key={index} data={item} />
+                  ))}
+              </div>
+            )}
           </div>
-
         </div>
-
       </main>
-
     </>
   );
 };
 
 export default Filters;
-
-
