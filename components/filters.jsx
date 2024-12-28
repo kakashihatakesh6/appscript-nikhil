@@ -10,7 +10,7 @@ const Filters = ({ sData, onFilterSelect }) => {
   const [categories, setCategories] = useState();
   const [selectedCategory, setSelectedCategory] = useState("electronics");
   const [isLoading, setIsLoading] = useState(false);
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
 
   const fetchData = async () => {
     console.log("im hitting fetch data");
@@ -74,8 +74,8 @@ const Filters = ({ sData, onFilterSelect }) => {
 
   console.log("selected cat =>", selectedCategory);
 
+  // "IDEAL FOR",
   const filterCategories = [
-    "IDEAL FOR",
     "OCCASSION",
     "WORK",
     "FABRIC",
@@ -93,7 +93,7 @@ const Filters = ({ sData, onFilterSelect }) => {
           <div className={styles.filterBarContainer}>
             <div className={styles.filterShowHide}>
               <div className={styles.itemsNumber}>
-                <b>{sData.length || "3211"} ITEMS</b>
+                <b>{sData?.length || "3211"} ITEMS</b>
               </div>
 
               <div
@@ -169,6 +169,48 @@ const Filters = ({ sData, onFilterSelect }) => {
 
               <div className={styles.seperator} />
 
+              <div className={styles.filterItemContainer}>
+                <div className={styles.filterTitleContainer}>
+                  <b>{"IDEAL FOR"}</b>
+                  <div
+                    onClick={() => setShow(!show)}
+                    className={styles.filterItemImage}
+                  >
+                    <img
+                      alt="arrow-down"
+                      src={
+                        !show ? "/icons/arrowdown.svg" : "/icons/arrowup.svg"
+                      }
+                    />
+                  </div>
+                </div>
+
+                <div className={styles.filterSubtitle}>All</div>
+                <div className={styles.unselectAlll}>Unselect all</div>
+
+                {show && (
+                  <div className={styles.filterItemOptions}>
+                    {categories &&
+                      categories.map((category, index) => (
+                        <div
+                          key={index}
+                          className={styles.checkboxOptionContainer}
+                        >
+                          <input
+                            className={styles.checkboxOption}
+                            checked={category === selectedCategory}
+                            onChange={() => setSelectedCategory(category)}
+                            type="checkbox"
+                          />
+                          <div className={styles.checkboxOptionTitle}>
+                            {category}
+                          </div>
+                        </div>
+                      ))}
+                  </div>
+                )}
+              </div>
+
               {/* Filter-1 IDEAL FOR   */}
 
               {filterCategories.map((item, index) => (
@@ -191,7 +233,7 @@ const Filters = ({ sData, onFilterSelect }) => {
                   <div className={styles.filterSubtitle}>All</div>
                   <div className={styles.unselectAlll}>Unselect all</div>
 
-                  {show && (
+                  {/* {show && (
                     <div className={styles.filterItemOptions}>
                       {categories &&
                         categories.map((category, index) => (
@@ -211,98 +253,14 @@ const Filters = ({ sData, onFilterSelect }) => {
                           </div>
                         ))}
                     </div>
-                  )}
+                  )} */}
+
                 </div>
               ))}
 
               <div className={styles.seperator11} />
 
-              {/* Filter-11 IDEAL FOR   */}
-
-              {/* <div className={styles.filterItemContainer}>
-                <div>
-                  <div className={styles.filterTitleContainer}>
-                    <b>SUITABLE FOR</b>
-                    <div className={styles.filterItemImage}>
-                      <img
-                        alt="arrow-down"
-                        src="/vuesaxlineararrowleft-5@2x.png"
-                      />
-                    </div>
-                  </div>
-
-                  <div className={styles.filterSubtitle}>All</div>
-                </div>
-
-
-                <div className={styles.unselectAlll}>Unselect all</div>
-
-                <div className={styles.filterItemOptions}>
-                  <div className={styles.checkboxOptionContainer}>
-                    <input className={styles.checkboxOption} type="checkbox" />
-                    <div className={styles.checkboxOptionTitle}>Men</div>
-                  </div>
-                  <div className={styles.checkboxOptionContainer}>
-                    <input className={styles.checkboxOption} type="checkbox" />
-                    <div className={styles.checkboxOptionTitle}>Woman</div>
-                  </div>
-                  <div className={styles.checkboxOptionContainer}>
-                    <input className={styles.checkboxOption} type="checkbox" />
-                    <div className={styles.checkboxOptionTitle}>Baby & Kids</div>
-                  </div>
-
-                </div>
-              </div>
-
-              <div className={styles.seperator11} /> */}
-
-              {/* Filter-12 IDEAL FOR   */}
-
-              {/* {products && products?.slice(0, 2).map((item, index) => ( */}
-              {/* {products && products?.map((item, index) => (
-                <div key={index}>
-
-                  <div className={styles.filterItemContainer}>
-                    <div>
-                      <div className={styles.filterTitleContainer}>
-                        <b>{item?.category}</b>
-                        <div className={styles.filterItemImage}>
-                          <img
-                            alt="arrow-down"
-                            src="/vuesaxlineararrowleft-5@2x.png"
-                          />
-                        </div>
-                      </div>
-
-                      <div className={styles.filterSubtitle}>All</div>
-                    </div>
-
-
-                    <div className={styles.unselectAlll}>Unselect all</div>
-
-                    <div className={styles.filterItemOptions}>
-
-                      <div className={styles.checkboxOptionContainer}>
-                        <input className={styles.checkboxOption} type="checkbox" />
-                        <div className={styles.checkboxOptionTitle}>Men</div>
-                      </div>
-
-                      <div className={styles.checkboxOptionContainer}>
-                        <input className={styles.checkboxOption} type="checkbox" />
-                        <div className={styles.checkboxOptionTitle}>Woman</div>
-                      </div>
-                      <div className={styles.checkboxOptionContainer}>
-                        <input className={styles.checkboxOption} type="checkbox" />
-                        <div className={styles.checkboxOptionTitle}>Baby & Kids</div>
-                      </div>
-
-                    </div>
-                  </div>
-
-                  <div className={styles.seperator11} />
-                </div>
-
-              ))} */}
+              
             </div>
           )}
 
