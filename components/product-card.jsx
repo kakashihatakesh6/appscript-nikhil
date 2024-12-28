@@ -10,7 +10,7 @@ const ProductCard = ({data}) => {
                 <img
                     className={styles.productImage}
                     loading="lazy"
-                    alt=""
+                    alt={data?.title}
                     src={data?.image || "/front-pic@2x.png"}
                 />
             </div>

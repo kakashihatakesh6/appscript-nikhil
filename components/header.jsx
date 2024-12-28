@@ -28,7 +28,7 @@ const Header = () => {
               <img
                 className={styles.logoImage}
                 loading="lazy"
-                alt=""
+                alt={'app-logo'}
                 src="/logo.svg"
               />
             </div>
